@@ -1,12 +1,18 @@
 package me.mcandze.plugin.zeareas.marking;
 
-import me.mcandze.plugin.zeareas.area.Area;
-
 import org.bukkit.Location;
-
-public class Marking {
+/**
+ * A class for selections.
+ * @author andreas
+ *
+ */
+public class Selection {
 	private Location location1 = null, location2 = null;
 	
+	/**
+	 * Is not reliable if you're looking to create an area that does not require exactly two selections.
+	 * @return
+	 */
 	public boolean isDone(){
 		return location1 != null && location2 != null;
 	}

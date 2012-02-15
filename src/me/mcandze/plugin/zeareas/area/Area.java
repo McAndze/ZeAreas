@@ -8,15 +8,44 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 
+/**
+ * An abstract class for Areas. Should stay relatively small.
+ * @author andreas
+ *
+ */
 public abstract class Area {
+	/**
+	 * Gets the points that marked this area.
+	 * @return
+	 */
 	public abstract List<BlockLocation> getPoints();
+	/**
+	 * Checks if a BlockLocation is in area. 
+	 * @param location
+	 * @return
+	 */
 	public abstract boolean isLocationInArea(BlockLocation location);
-	public boolean isInArea(Block block){
+	/**
+	 * Checks if a block is in area.
+	 * @param block
+	 * @return true if Block is in area.
+	 */
+	public boolean isBlockInArea(Block block){
 		return this.isLocationInArea(block.getLocation());
 	}
-	public boolean isInArea(Entity entity){
+	/**
+	 * Checks if Entity is in area.
+	 * @param entity
+	 * @return true if Entity is in area.
+	 */
+	public boolean isEntityInArea(Entity entity){
 		return this.isLocationInArea(entity.getLocation());
 	}
+	/**
+	 * Checks if Location is in area.
+	 * @param location
+	 * @return true if Location is in area.
+	 */
 	public boolean isLocationInArea(Location location){
 		return this.isLocationInArea(BlockLocation.toBlockLocation(location));
 	}

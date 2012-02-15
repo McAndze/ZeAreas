@@ -13,23 +13,23 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-public class MarkingManager implements Listener{
-	public static int MARKING_ITEM = 290;
-	private HashMap<String, Marking> markingMap;
+public class SelectionsManager implements Listener{
+	public static int SELECTION_ITEM = 290;
+	private HashMap<String, Selection> seletions;
 	private ZeAreas instance;
 	
-	public MarkingManager(ZeAreas instance){
+	public SelectionsManager(ZeAreas instance){
 		this.instance = instance;
 		this.instance.getServer().getPluginManager().registerEvents(this, this.instance);
-		this.markingMap = new HashMap<String, Marking>();
+		this.seletions = new HashMap<String, Selection>();
 	}
 	
-	public Marking getMarking(Player player){
-		return getMarking(player.getName());
+	public Selection getSelection(Player player){
+		return getSelection(player.getName());
 	}
 	
-	public Marking getMarking(String string){
-		return markingMap.get(string);
+	public Selection getSelection(String string){
+		return seletions.get(string);
 	}
 	
 	/*
@@ -43,7 +43,7 @@ public class MarkingManager implements Listener{
 		Action action = event.getAction();
 		int id = event.getItem().getTypeId();
 		
-		if (id == MARKING_ITEM){
+		if (id == SELECTION_ITEM){
 			if (action == Action.LEFT_CLICK_BLOCK){
 				this.leftClickMark(event);
 				event.setCancelled(true);
@@ -64,14 +64,14 @@ public class MarkingManager implements Listener{
 		Block clicked = event.getClickedBlock();
 		Location lClicked = clicked.getLocation();
 		
-		Marking marking;
-		if (!markingMap.containsKey(playerName)){
-			marking = new Marking();
+		Selection marking;
+		if (!seletions.containsKey(playerName)){
+			marking = new Selection();
 		} else {
-			marking = markingMap.get(playerName);
+			marking = seletions.get(playerName);
 		}
 		marking.setLocation1(lClicked);
-		markingMap.put(playerName, marking);
+		seletions.put(playerName, marking);
 	}
 	
 	/**
@@ -84,14 +84,14 @@ public class MarkingManager implements Listener{
 		Block clicked = event.getClickedBlock();
 		Location lClicked = clicked.getLocation();
 		
-		Marking marking;
-		if (!markingMap.containsKey(playerName)){
-			marking = new Marking();
+		Selection marking;
+		if (!seletions.containsKey(playerName)){
+			marking = new Selection();
 		} else {
-			marking = markingMap.get(playerName);
+			marking = seletions.get(playerName);
 		}
 		marking.setLocation2(lClicked);
-		markingMap.put(playerName, marking);
+		seletions.put(playerName, marking);
 	}
 	
 	/*

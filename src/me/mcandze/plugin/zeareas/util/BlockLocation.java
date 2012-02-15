@@ -2,7 +2,11 @@ package me.mcandze.plugin.zeareas.util;
 
 import org.bukkit.Location;
 import org.bukkit.World;
-
+/**
+ * A small replacement class for Location. Used in Areas.
+ * @author andreas
+ *
+ */
 public class BlockLocation{
 	private int x;
 	private int y;
@@ -18,8 +22,11 @@ public class BlockLocation{
 		this.world = world;
 	}
 
-
-
+	/**
+	 * Converts a Location to a BlockLocation.
+	 * @param loc Location to convert.
+	 * @return converted BlockLocation.
+	 */
 	public static BlockLocation toBlockLocation(Location loc){
 		BlockLocation blockLoc = new BlockLocation();
 		blockLoc.setX(loc.getBlockX());

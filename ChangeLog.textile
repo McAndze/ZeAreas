@@ -1,0 +1,13 @@
+h1. Changelog for ZeAreas
+
+h2. v0.x.x
+
+h3. v0.1.x
+
+h4. v0.1.0
+
+* Added area API
+* Added marking API
+* Added BlockLocation for areas, to replace Location
+* Replaced Location in areas with BlockLocation
+* Added Location -> BlockLocation converter

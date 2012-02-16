@@ -75,7 +75,7 @@ public class Area2D extends CuboidArea{
 				Math.max(list[0].getZ(), list[1].getZ()), 
 				list[0].getY(), list[0].getWorld());
 		list[3] = new BlockLocation(Math.min(list[0].getX(), list[1].getX()),
-				Math.max(list[0].getZ(), list[1].getZ()),
+				Math.min(list[0].getZ(), list[1].getZ()),
 				list[0].getY(), list[0].getWorld());
 		return list;
 	}

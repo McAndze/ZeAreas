@@ -56,7 +56,19 @@ public class RangeArea extends CuboidArea {
 	@Override
 	public BlockLocation[] getCorners() {
 		BlockLocation[] list = new BlockLocation[4];
-		return null;
+		int x = this.location.getX();
+		int y = this.location.getY();
+		int z = this.location.getZ();
+		World world = this.location.getWorld();
+		int xPlus = x + radius;
+		int xMinus = x - radius;
+		int zPlus = z + radius;
+		int zMinus = z - radius;
+		list[0] = new BlockLocation(xPlus, y, zPlus, world);
+		list[1] = new BlockLocation(xPlus, y, zMinus, world);
+		list[2] = new BlockLocation(xMinus, y, zPlus, world);
+		list[3] = new BlockLocation(xMinus, y, zMinus, world);
+		return list;
 	}
 	
 	

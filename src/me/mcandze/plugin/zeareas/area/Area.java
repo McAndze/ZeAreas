@@ -13,7 +13,7 @@ import org.bukkit.entity.Entity;
  * @author andreas
  *
  */
-public abstract class Area {
+public interface Area {
 	/**
 	 * Gets the points that marked this area.
 	 * @return
@@ -30,23 +30,17 @@ public abstract class Area {
 	 * @param block
 	 * @return true if Block is in area.
 	 */
-	public boolean isBlockInArea(Block block){
-		return this.isLocationInArea(block.getLocation());
-	}
+	public abstract boolean isBlockInArea(Block block);
 	/**
 	 * Checks if Entity is in area.
 	 * @param entity
 	 * @return true if Entity is in area.
 	 */
-	public boolean isEntityInArea(Entity entity){
-		return this.isLocationInArea(entity.getLocation());
-	}
+	public abstract boolean isEntityInArea(Entity entity);
 	/**
 	 * Checks if Location is in area.
 	 * @param location
 	 * @return true if Location is in area.
 	 */
-	public boolean isLocationInArea(Location location){
-		return this.isLocationInArea(BlockLocation.toBlockLocation(location));
-	}
+	public abstract boolean isLocationInArea(Location location);
 }

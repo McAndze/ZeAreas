@@ -7,13 +7,15 @@ import me.mcandze.plugin.zeareas.util.BlockLocation;
 
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 /**
  * A class for 2-dimensional areas.
  * It simply ignores the Y-axis and creates a cuboid from sky to bedrock, limited by the Z and X axis.
  * @author andreas
  *
  */
-public class Area2D extends CuboidArea{
+public class Area2D implements CuboidArea{
 	private BlockLocation location1, location2;
 	private World world;
 	private double lowX, lowZ, highX, highZ;
@@ -78,5 +80,20 @@ public class Area2D extends CuboidArea{
 				Math.min(list[0].getZ(), list[1].getZ()),
 				list[0].getY(), list[0].getWorld());
 		return list;
+	}
+	
+	@Override
+	public boolean isBlockInArea(Block block) {
+		return this.isLocationInArea(block.getLocation());
+	}
+
+	@Override
+	public boolean isEntityInArea(Entity entity) {
+		return this.isLocationInArea(entity.getLocation());
+	}
+
+	@Override
+	public boolean isLocationInArea(Location location) {
+		return this.isLocationInArea(BlockLocation.toBlockLocation(location));
 	}
 }

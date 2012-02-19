@@ -6,7 +6,7 @@ import me.mcandze.plugin.zeareas.util.BlockLocation;
  * @author andreas
  *
  */
-public abstract class CuboidArea extends Area{
+public interface CuboidArea extends Area{
 	/**
 	 * Get the corners of this cuboid.
 	 * @return

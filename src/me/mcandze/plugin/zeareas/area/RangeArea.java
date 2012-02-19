@@ -7,13 +7,15 @@ import me.mcandze.plugin.zeareas.util.BlockLocation;
 
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 
 /**
  * A range based area. It has only got one point, and acts in a certain radius around this point.
  * @author andreas
  *
  */
-public class RangeArea extends CuboidArea {
+public class RangeArea implements CuboidArea {
 	private BlockLocation location;
 	private World world;
 	private int radius;
@@ -23,6 +25,7 @@ public class RangeArea extends CuboidArea {
 		this.radius = radius;
 		this.world = location.getWorld();
 	}
+	
 	@Override
 	public List<BlockLocation> getPoints() {
 		List<BlockLocation> toReturn = new ArrayList<BlockLocation>();
@@ -30,12 +33,14 @@ public class RangeArea extends CuboidArea {
 		return toReturn;
 	}
 
-	@Override
+	
 	public boolean isLocationInArea(BlockLocation test) {
 		return test.getWorld().equals(this.world) && (Math.sqrt(Math.pow(location.getX() - test.getX(), 2)
 				+ Math.pow(location.getY() - test.getY(), 2)
 				+ Math.pow(location.getZ() - test.getZ(), 2)) <= this.getRadius());
 	}
+	
+	
 	
 	/**
 	 * Return the radius of this area.
@@ -69,6 +74,21 @@ public class RangeArea extends CuboidArea {
 		list[2] = new BlockLocation(xMinus, y, zPlus, world);
 		list[3] = new BlockLocation(xMinus, y, zMinus, world);
 		return list;
+	}
+
+	@Override
+	public boolean isBlockInArea(Block block) {
+		return this.isLocationInArea(block.getLocation());
+	}
+
+	@Override
+	public boolean isEntityInArea(Entity entity) {
+		return this.isLocationInArea(entity.getLocation());
+	}
+
+	@Override
+	public boolean isLocationInArea(Location location) {
+		return this.isLocationInArea(BlockLocation.toBlockLocation(location));
 	}
 	
 	

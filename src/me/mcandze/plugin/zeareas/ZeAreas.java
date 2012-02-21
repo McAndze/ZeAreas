@@ -17,7 +17,6 @@ public class ZeAreas extends JavaPlugin{
 	public void onDisable() {
 		selectionsManager = null;
 		instance = null;
-		
 	}
 
 	@Override

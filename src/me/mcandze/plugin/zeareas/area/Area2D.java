@@ -34,6 +34,19 @@ public class Area2D implements CuboidArea{
 		this.owner = owner;
 	}
 	
+	public Area2D(BlockLocation location1, BlockLocation location2){
+		this.location1 = location1;
+		this.location2 = location2;
+		this.world = location1.getWorld();
+		this.recalcMinimum();
+		this.owner = new OwnerServer();
+	}
+	
+	public Area2D(BlockLocation location1, BlockLocation location2, AreaOwner owner){
+		this(location1, location2);
+		this.owner = owner;
+	}
+	
 	@Override
 	public List<BlockLocation> getPoints() {
 		List<BlockLocation> toReturn = new ArrayList<BlockLocation>();

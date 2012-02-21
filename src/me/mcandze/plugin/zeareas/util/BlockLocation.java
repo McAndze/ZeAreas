@@ -35,6 +35,10 @@ public class BlockLocation{
 		return blockLoc;
 	}
 	
+	public static Location fromBlockLoc(BlockLocation blockLoc){
+		return new Location(blockLoc.world, blockLoc.x, blockLoc.y, blockLoc.z);
+	}
+	
 	public int getX() {
 		return x;
 	}

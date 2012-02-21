@@ -12,16 +12,17 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 public class SelectionsManager implements Listener{
 	public static int SELECTION_ITEM = 290;
-	private HashMap<String, Selection> seletions;
+	private HashMap<String, Selection> selections;
 	private ZeAreas instance;
 	
 	public SelectionsManager(ZeAreas instance){
 		this.instance = instance;
 		this.instance.getServer().getPluginManager().registerEvents(this, this.instance);
-		this.seletions = new HashMap<String, Selection>();
+		this.selections = new HashMap<String, Selection>();
 	}
 	
 	public Selection getSelection(Player player){
@@ -29,7 +30,7 @@ public class SelectionsManager implements Listener{
 	}
 	
 	public Selection getSelection(String string){
-		return seletions.get(string);
+		return selections.get(string);
 	}
 	
 	/*
@@ -65,13 +66,13 @@ public class SelectionsManager implements Listener{
 		Location lClicked = clicked.getLocation();
 		
 		Selection marking;
-		if (!seletions.containsKey(playerName)){
+		if (!selections.containsKey(playerName)){
 			marking = new Selection();
 		} else {
-			marking = seletions.get(playerName);
+			marking = selections.get(playerName);
 		}
 		marking.setLocation1(lClicked);
-		seletions.put(playerName, marking);
+		selections.put(playerName, marking);
 	}
 	
 	/**
@@ -85,16 +86,24 @@ public class SelectionsManager implements Listener{
 		Location lClicked = clicked.getLocation();
 		
 		Selection marking;
-		if (!seletions.containsKey(playerName)){
+		if (!selections.containsKey(playerName)){
 			marking = new Selection();
 		} else {
-			marking = seletions.get(playerName);
+			marking = selections.get(playerName);
 		}
 		marking.setLocation2(lClicked);
-		seletions.put(playerName, marking);
+		selections.put(playerName, marking);
 	}
 	
 	/*
 	 * Listener stop
 	 */
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onPlayerJoin(final PlayerJoinEvent event){
+		String name = event.getPlayer().getName();
+		if (!selections.containsKey(name)){
+			selections.put(name, new Selection());
+		}
+	}
 }

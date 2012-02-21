@@ -16,6 +16,10 @@ public class OwnerPlayer implements AreaOwner{
 		this.player = player.getName();
 	}
 	
+	public OwnerPlayer(String player){
+		this.player = player;
+	}
+	
 	/**
 	 * Returns the name of the owner.
 	 * @return

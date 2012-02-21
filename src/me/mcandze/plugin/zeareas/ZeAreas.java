@@ -10,20 +10,23 @@ import org.bukkit.plugin.java.JavaPlugin;
  *
  */
 public class ZeAreas extends JavaPlugin{
-	private SelectionsManager markingManager;
+	private SelectionsManager selectionsManager;
+	public static ZeAreas instance = null;
 
 	@Override
 	public void onDisable() {
-		markingManager = null;
+		selectionsManager = null;
+		instance = null;
 		
 	}
 
 	@Override
 	public void onEnable() {
-		markingManager = new SelectionsManager(this);
+		selectionsManager = new SelectionsManager(this);
+		instance = this;
 	}
 
-	public SelectionsManager getMarkingManager() {
-		return markingManager;
+	public SelectionsManager getSelectionsManager() {
+		return selectionsManager;
 	}
 }
